@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 
-import { deleteContact } from 'redux/operations';
+import { deleteContact } from 'redux/contactsOperations';
 
 import { ImCross } from 'react-icons/im';
 import PropTypes from 'prop-types';

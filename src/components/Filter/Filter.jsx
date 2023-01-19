@@ -19,6 +19,7 @@ const Filter = () => {
 
   return (
     <Wrapper>
+      <h2>Contacts</h2>
       <FilterLabel>
         Find contacts by name
         <br />
