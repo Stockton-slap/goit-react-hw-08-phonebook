@@ -1,7 +1,7 @@
 import { NavContainer, AuthNav } from './Navigation.styled';
-import UserMenu from 'components/UserMenu';
+import { StyledLink } from './Navigation.styled';
 
-import { NavLink } from 'react-router-dom';
+import UserMenu from 'components/UserMenu';
 
 import { selectIsLoggedIn } from 'redux/selectors';
 import { useSelector } from 'react-redux';
@@ -11,14 +11,18 @@ const Navigation = () => {
 
   return (
     <NavContainer>
-      <NavLink to="/">Home</NavLink>
+      <StyledLink to="/">Home</StyledLink>
 
       {isLoggedIn ? (
         <UserMenu />
       ) : (
         <AuthNav>
-          <NavLink to="/register">Register</NavLink>
-          <NavLink to="/login">Log In</NavLink>
+          <li>
+            <StyledLink to="/register">Register</StyledLink>
+          </li>
+          <li>
+            <StyledLink to="/login">Log In</StyledLink>
+          </li>
         </AuthNav>
       )}
     </NavContainer>

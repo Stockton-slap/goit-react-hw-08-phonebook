@@ -7,42 +7,59 @@ import {
   LogInFormTitle,
 } from './LogInForm.styled';
 
+import { logIn } from 'redux/authOperations';
+
+import { useDispatch } from 'react-redux';
+
 const LogInForm = () => {
+  const dispatch = useDispatch();
+
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    const form = e.target;
+
+    dispatch(
+      logIn({
+        email: form.elements.email.value,
+        password: form.elements.password.value,
+      })
+    );
+
+    form.reset();
+  };
+
   return (
     <LogInFormContainer>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <LogInFormTitle>SIGN IN</LogInFormTitle>
 
-        <LogInFormLabel for="email">
+        <LogInFormLabel htmlFor="email">
           Email <br />
         </LogInFormLabel>
         <LogInFormValue
           id="email"
-          autoComplete="on"
           type="text"
-          value=""
           name="email"
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"
+          title="Email must include '@'"
           required
         />
 
-        <LogInFormLabel for="password">
+        <LogInFormLabel htmlFor="password">
           Password <br />
         </LogInFormLabel>
         <LogInFormValue
           id="password"
-          autoComplete="on"
           type="text"
-          value=""
           name="password"
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          placeholder="At least 8 characters"
+          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
+          title="At least one number and one uppercase and lowercase letter, and at least 6 or more characters"
+          placeholder="At least 6 characters"
           required
         />
+        <LogInFormBtn type="submit">Sign in</LogInFormBtn>
       </Form>
-      <LogInFormBtn type="button">SIGN IN</LogInFormBtn>
     </LogInFormContainer>
   );
 };

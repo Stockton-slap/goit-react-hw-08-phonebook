@@ -17,15 +17,17 @@ const RegForm = () => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    const form = e.target.elements;
+    const form = e.target;
 
     dispatch(
       register({
-        name: form.name.value,
-        email: form.email.value,
-        password: form.password.value,
+        name: form.elements.name.value,
+        email: form.elements.email.value,
+        password: form.elements.password.value,
       })
     );
+
+    form.reset();
   };
 
   return (
@@ -70,7 +72,7 @@ const RegForm = () => {
           placeholder="At least 6 characters"
           required
         />
-        <RegFormBtn type="submit">CREATE YOUR ACCOUNT</RegFormBtn>
+        <RegFormBtn type="submit">Create your account</RegFormBtn>
       </Form>
     </RegFormContainer>
   );
