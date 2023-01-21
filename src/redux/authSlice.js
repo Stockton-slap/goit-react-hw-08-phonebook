@@ -20,7 +20,6 @@ const authSlice = createSlice({
   initialState,
   extraReducers: {
     [register.fulfilled](state, action) {
-      console.log(action.payload);
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
@@ -33,7 +32,7 @@ const authSlice = createSlice({
       state.user = action.payload;
       state.isLoggedIn = false;
       state.isLoading = false;
-      toast.error('Sorry, your registration is failed.');
+      toast.error('Oops, something went wrong.');
     },
 
     [logIn.fulfilled](state, action) {
@@ -41,8 +40,15 @@ const authSlice = createSlice({
       state.token = action.payload.token;
       state.isLoggedIn = true;
     },
-    [logIn.pending](state, action) {},
-    [logIn.rejected](state, action) {},
+    [logIn.pending](state, action) {
+      state.isLoading = true;
+    },
+    [logIn.rejected](state, action) {
+      state.user = action.payload;
+      state.isLoggedIn = false;
+      state.isLoading = false;
+      toast.error('Oops, something went wrong.');
+    },
 
     [logOut.fulfilled](state) {
       state.user.name = '';

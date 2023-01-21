@@ -11,19 +11,12 @@ const Navigation = () => {
 
   return (
     <NavContainer>
-      <Nav>
-        <NavItem>
-          <StyledLink to="/">Home</StyledLink>
-        </NavItem>
-        {isLoggedIn && (
-          <NavItem>
-            <StyledLink to="/contacts">Contacts</StyledLink>
-          </NavItem>
-        )}
-      </Nav>
+      <StyledLink to="/">Home</StyledLink>
 
       {isLoggedIn ? (
         <>
+          <StyledLink to="/contacts">Contacts</StyledLink>
+
           <UserMenu />
         </>
       ) : (

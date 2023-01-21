@@ -1,11 +1,13 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Toaster from './Toaster/Toaster';
-
 // import { fetchCurrentUser } from 'redux/authOperations';
 
 import AppBar from './AppBar';
+import Toaster from './Toaster';
+import NotFound from './NotFound';
+import PrivateRoute from './PrivateRoute';
+import PublicRoute from './PublicRoute';
 
 import Home from 'pages/Home';
 import Register from 'pages/Register';
@@ -32,13 +34,38 @@ export const App = () => {
       <div style={{ padding: '50px' }}>
         {isLoggedIn ? (
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/contacts" element={<Contacts />} />
+            <Route
+              exact
+              path="/"
+              element={<PublicRoute>{<Home />}</PublicRoute>}
+            />
+            <Route
+              path="/contacts"
+              element={<PrivateRoute>{<Contacts />}</PrivateRoute>}
+            ></Route>
+            <Route
+              exact
+              path="*"
+              element={<PublicRoute>{<NotFound />}</PublicRoute>}
+            />
           </Routes>
         ) : (
           <Routes>
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<LogIn />} />
+            <Route
+              exact
+              path="/register"
+              element={<PublicRoute restricted>{<Register />}</PublicRoute>}
+            />
+            <Route
+              exact
+              path="/login"
+              element={<PublicRoute restricted>{<LogIn />}</PublicRoute>}
+            />
+            <Route
+              exact
+              path="*"
+              element={<PublicRoute>{<NotFound />}</PublicRoute>}
+            />
           </Routes>
         )}
       </div>
