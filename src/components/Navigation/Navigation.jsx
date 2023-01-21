@@ -1,4 +1,4 @@
-import { NavContainer, AuthNav } from './Navigation.styled';
+import { NavContainer, Nav, NavItem } from './Navigation.styled';
 import { StyledLink } from './Navigation.styled';
 
 import UserMenu from 'components/UserMenu';
@@ -11,19 +11,30 @@ const Navigation = () => {
 
   return (
     <NavContainer>
-      <StyledLink to="/">Home</StyledLink>
+      <Nav>
+        <NavItem>
+          <StyledLink to="/">Home</StyledLink>
+        </NavItem>
+        {isLoggedIn && (
+          <NavItem>
+            <StyledLink to="/contacts">Contacts</StyledLink>
+          </NavItem>
+        )}
+      </Nav>
 
       {isLoggedIn ? (
-        <UserMenu />
+        <>
+          <UserMenu />
+        </>
       ) : (
-        <AuthNav>
-          <li>
+        <Nav>
+          <NavItem>
             <StyledLink to="/register">Register</StyledLink>
-          </li>
-          <li>
+          </NavItem>
+          <NavItem>
             <StyledLink to="/login">Log In</StyledLink>
-          </li>
-        </AuthNav>
+          </NavItem>
+        </Nav>
       )}
     </NavContainer>
   );

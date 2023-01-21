@@ -1,28 +1,29 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { fetchContacts } from 'redux/contactsOperations';
+import Toaster from './Toaster/Toaster';
+
+// import { fetchCurrentUser } from 'redux/authOperations';
 
 import AppBar from './AppBar';
-import ContactsContainer from './ContactsContainer';
 
 import Home from 'pages/Home';
 import Register from 'pages/Register';
 import LogIn from 'pages/LogIn';
+import Contacts from 'pages/Contacts';
 
 import { Routes, Route } from 'react-router';
 
 import { selectIsLoggedIn } from 'redux/selectors';
 
 export const App = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchCurrentUser());
+  // }, [dispatch]);
 
   return (
     <div>
@@ -30,17 +31,18 @@ export const App = () => {
 
       <div style={{ padding: '50px' }}>
         {isLoggedIn ? (
-          <ContactsContainer />
-        ) : (
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/register" element={<Register />}>
-              {/* <Route path="/contacts" /> */}
-            </Route>
+            <Route path="/contacts" element={<Contacts />} />
+          </Routes>
+        ) : (
+          <Routes>
+            <Route path="/register" element={<Register />} />
             <Route path="/login" element={<LogIn />} />
           </Routes>
         )}
       </div>
+      <Toaster />
     </div>
   );
 };

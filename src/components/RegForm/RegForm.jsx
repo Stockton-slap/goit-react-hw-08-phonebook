@@ -7,12 +7,17 @@ import {
   RegFormTitle,
 } from './RegForm.styled';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { register } from 'redux/authOperations';
 
+import { selectIsError, selectIsAuthLoading } from 'redux/selectors';
+
 const RegForm = () => {
   const dispatch = useDispatch();
+
+  const isError = useSelector(selectIsError);
+  const isLoading = useSelector(selectIsAuthLoading);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -72,7 +77,9 @@ const RegForm = () => {
           placeholder="At least 6 characters"
           required
         />
-        <RegFormBtn type="submit">Create your account</RegFormBtn>
+        <RegFormBtn type="submit">
+          {isLoading ? '...Loading' : 'Create your account'}
+        </RegFormBtn>
       </Form>
     </RegFormContainer>
   );
