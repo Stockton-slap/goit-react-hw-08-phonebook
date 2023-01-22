@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { register, logIn, logOut } from './authOperations';
+import { register, logIn, logOut, fetchCurrentUser } from './authOperations';
 
 import { toast } from 'react-toastify';
 
@@ -23,15 +23,15 @@ const authSlice = createSlice({
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
-      state.isLoading = false;
+      // state.isLoading = false;
     },
     [register.pending](state, action) {
       state.isLoading = true;
     },
     [register.rejected](state, action) {
-      state.user = action.payload;
+      state.isError = action.payload;
       state.isLoggedIn = false;
-      state.isLoading = false;
+      // state.isLoading = false;
       toast.error('Oops, something went wrong.');
     },
 
@@ -41,12 +41,12 @@ const authSlice = createSlice({
       state.isLoggedIn = true;
     },
     [logIn.pending](state, action) {
-      state.isLoading = true;
+      // state.isLoading = true;
     },
     [logIn.rejected](state, action) {
-      state.user = action.payload;
+      state.isError = action.payload;
       state.isLoggedIn = false;
-      state.isLoading = false;
+      // state.isLoading = false;
       toast.error('Oops, something went wrong.');
     },
 
@@ -58,8 +58,29 @@ const authSlice = createSlice({
 
       state.isLoggedIn = false;
     },
-    [logOut.pending](state, action) {},
-    [logOut.rejected](state, action) {},
+    [logOut.pending](state, action) {
+      // state.isLoading = true;
+    },
+    [logOut.rejected](state, action) {
+      state.isError = action.payload;
+      state.isLoggedIn = false;
+      // state.isLoading = false;
+      toast.error('Oops, something went wrong.');
+    },
+
+    [fetchCurrentUser.fulfilled](state, action) {
+      state.user = action.payload;
+      state.isLoggedIn = true;
+      // state.isLoading = false;
+    },
+    [fetchCurrentUser.pending](state, action) {
+      // state.isLoading = true;
+    },
+    [fetchCurrentUser.rejected](state, action) {
+      state.isError = action.payload;
+      state.isLoggedIn = false;
+      // state.isLoading = false;
+    },
   },
 });
 

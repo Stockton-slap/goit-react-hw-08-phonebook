@@ -1,7 +1,7 @@
-// import { useEffect } from 'react';
-// import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-// import { fetchCurrentUser } from 'redux/authOperations';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { fetchCurrentUser } from 'redux/authOperations';
 
 import AppBar from './AppBar';
 import Toaster from './Toaster';
@@ -16,58 +16,48 @@ import Contacts from 'pages/Contacts';
 
 import { Routes, Route } from 'react-router';
 
-import { selectIsLoggedIn } from 'redux/selectors';
-
 export const App = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  const isLoggedIn = useSelector(selectIsLoggedIn);
-
-  // useEffect(() => {
-  //   dispatch(fetchCurrentUser());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchCurrentUser());
+  }, [dispatch]);
 
   return (
     <div>
       <AppBar />
 
       <div style={{ padding: '50px' }}>
-        {isLoggedIn ? (
-          <Routes>
-            <Route
-              exact
-              path="/"
-              element={<PublicRoute>{<Home />}</PublicRoute>}
-            />
-            <Route
-              path="/contacts"
-              element={<PrivateRoute>{<Contacts />}</PrivateRoute>}
-            ></Route>
-            <Route
-              exact
-              path="*"
-              element={<PublicRoute>{<NotFound />}</PublicRoute>}
-            />
-          </Routes>
-        ) : (
-          <Routes>
-            <Route
-              exact
-              path="/register"
-              element={<PublicRoute restricted>{<Register />}</PublicRoute>}
-            />
-            <Route
-              exact
-              path="/login"
-              element={<PublicRoute restricted>{<LogIn />}</PublicRoute>}
-            />
-            <Route
-              exact
-              path="*"
-              element={<PublicRoute>{<NotFound />}</PublicRoute>}
-            />
-          </Routes>
-        )}
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={<PublicRoute>{<Home />}</PublicRoute>}
+          />
+
+          <Route
+            path="/contacts"
+            element={<PrivateRoute>{<Contacts />}</PrivateRoute>}
+          ></Route>
+
+          <Route
+            exact
+            path="/register"
+            element={<PublicRoute restricted>{<Register />}</PublicRoute>}
+          />
+
+          <Route
+            exact
+            path="/login"
+            element={<PublicRoute restricted>{<LogIn />}</PublicRoute>}
+          />
+
+          <Route
+            exact
+            path="*"
+            element={<PublicRoute>{<NotFound />}</PublicRoute>}
+          />
+        </Routes>
       </div>
       <Toaster />
     </div>

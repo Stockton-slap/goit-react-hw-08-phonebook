@@ -7,9 +7,8 @@ import { selectIsLoggedIn } from 'redux/selectors';
 const PublicRoute = ({ children, restricted = false }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const shouldRedirect = isLoggedIn && restricted;
-  console.log(shouldRedirect);
 
-  return shouldRedirect ? <Navigate to="/" /> : children;
+  return shouldRedirect ? <Navigate to="/contacts" /> : children;
 };
 
 export default PublicRoute;
