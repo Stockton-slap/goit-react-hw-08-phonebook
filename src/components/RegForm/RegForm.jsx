@@ -37,7 +37,7 @@ const RegForm = () => {
   return (
     <RegFormContainer>
       <Form onSubmit={handleSubmit}>
-        <RegFormTitle>CREATE YOUR ACCOUNT</RegFormTitle>
+        <RegFormTitle>CREATE ACCOUNT</RegFormTitle>
 
         <RegFormLabel htmlFor="name">
           Your username <br />

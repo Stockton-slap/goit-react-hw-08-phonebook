@@ -2,7 +2,10 @@ import {
   UserMenuContainer,
   UserMenuEmail,
   UserMenuBtn,
+  Avatar,
 } from './UserMenu.styled';
+
+import avatar from './avatar.png';
 
 import { logOut } from 'redux/authOperations';
 
@@ -17,7 +20,8 @@ const UserMenu = () => {
 
   return (
     <UserMenuContainer>
-      <UserMenuEmail>{email}</UserMenuEmail>
+      <Avatar src={avatar} alt="avatar" />
+      <UserMenuEmail>Welcome, {email}!</UserMenuEmail>
       <UserMenuBtn type="button" onClick={() => dispatch(logOut())}>
         Logout
       </UserMenuBtn>
