@@ -9,9 +9,19 @@ import { ThreeDots } from 'react-loader-spinner';
 import { selectIsLoading } from 'redux/selectors';
 import { selectError } from 'redux/selectors';
 
+import { fetchContacts } from 'redux/contactsOperations';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+
 const Contacts = () => {
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   return (
     <>

@@ -9,10 +9,14 @@ import {
 
 import { logIn } from 'redux/authOperations';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { selectIsAuthLoading } from 'redux/selectors';
 
 const LogInForm = () => {
   const dispatch = useDispatch();
+
+  const isLoading = useSelector(selectIsAuthLoading);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -58,7 +62,9 @@ const LogInForm = () => {
           placeholder="At least 6 characters"
           required
         />
-        <LogInFormBtn type="submit">Sign in</LogInFormBtn>
+        <LogInFormBtn type="submit">
+          {isLoading ? 'Loading...' : 'Sign in'}
+        </LogInFormBtn>
       </Form>
     </LogInFormContainer>
   );

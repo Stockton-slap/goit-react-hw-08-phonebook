@@ -10,9 +10,11 @@ const initialState = {
     email: '',
     password: '',
   },
+  token: null,
   isLoggedIn: false,
   isError: false,
   isLoading: false,
+  isRefreshing: false,
 };
 
 const authSlice = createSlice({
@@ -23,15 +25,15 @@ const authSlice = createSlice({
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
-      // state.isLoading = false;
+      state.isLoading = false;
     },
-    [register.pending](state, action) {
+    [register.pending](state) {
       state.isLoading = true;
     },
     [register.rejected](state, action) {
       state.isError = action.payload;
       state.isLoggedIn = false;
-      // state.isLoading = false;
+      state.isLoading = false;
       toast.error('Oops, something went wrong.');
     },
 
@@ -39,14 +41,15 @@ const authSlice = createSlice({
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
+      state.isLoading = false;
     },
-    [logIn.pending](state, action) {
-      // state.isLoading = true;
+    [logIn.pending](state) {
+      state.isLoading = true;
     },
     [logIn.rejected](state, action) {
       state.isError = action.payload;
       state.isLoggedIn = false;
-      // state.isLoading = false;
+      state.isLoading = false;
       toast.error('Oops, something went wrong.');
     },
 
@@ -54,32 +57,32 @@ const authSlice = createSlice({
       state.user.name = '';
       state.user.email = '';
       state.user.password = '';
-      state.user.token = null;
-
+      state.token = null;
+      state.isLoading = false;
       state.isLoggedIn = false;
     },
-    [logOut.pending](state, action) {
-      // state.isLoading = true;
+    [logOut.pending](state) {
+      state.isLoading = true;
     },
     [logOut.rejected](state, action) {
       state.isError = action.payload;
       state.isLoggedIn = false;
-      // state.isLoading = false;
+      state.isLoading = false;
       toast.error('Oops, something went wrong.');
     },
 
     [fetchCurrentUser.fulfilled](state, action) {
       state.user = action.payload;
       state.isLoggedIn = true;
-      // state.isLoading = false;
+      state.isRefreshing = false;
     },
-    [fetchCurrentUser.pending](state, action) {
-      // state.isLoading = true;
+    [fetchCurrentUser.pending](state) {
+      state.isRefreshing = true;
     },
     [fetchCurrentUser.rejected](state, action) {
       state.isError = action.payload;
       state.isLoggedIn = false;
-      // state.isLoading = false;
+      state.isRefreshing = false;
     },
   },
 });

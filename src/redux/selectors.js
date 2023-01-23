@@ -10,3 +10,4 @@ export const selectAuthNumber = state => state.auth.user.number;
 export const selectIsLoggedIn = state => state.auth.isLoggedIn;
 export const selectIsError = state => state.auth.isError;
 export const selectIsAuthLoading = state => state.auth.isLoading;
+export const selectIsRefreshing = state => state.auth.isRefreshing;

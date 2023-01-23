@@ -12,12 +12,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { register } from 'redux/authOperations';
 
 import { selectIsAuthLoading } from 'redux/selectors';
-// selectIsError;
 
 const RegForm = () => {
   const dispatch = useDispatch();
 
-  // const isError = useSelector(selectIsError);
   const isLoading = useSelector(selectIsAuthLoading);
 
   const handleSubmit = e => {

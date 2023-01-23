@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { fetchCurrentUser } from 'redux/authOperations';
+
+import { selectIsRefreshing } from 'redux/selectors';
 
 import AppBar from './AppBar';
 import Toaster from './Toaster';
@@ -19,11 +21,15 @@ import { Routes, Route } from 'react-router';
 export const App = () => {
   const dispatch = useDispatch();
 
+  const isRefreshing = useSelector(selectIsRefreshing);
+
   useEffect(() => {
     dispatch(fetchCurrentUser());
   }, [dispatch]);
 
-  return (
+  return isRefreshing ? (
+    <b>Refreshing user...</b>
+  ) : (
     <div>
       <AppBar />
 
@@ -37,7 +43,9 @@ export const App = () => {
 
           <Route
             path="/contacts"
-            element={<PrivateRoute>{<Contacts />}</PrivateRoute>}
+            element={
+              <PrivateRoute redirectTo="/login">{<Contacts />}</PrivateRoute>
+            }
           ></Route>
 
           <Route
