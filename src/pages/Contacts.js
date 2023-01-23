@@ -4,7 +4,7 @@ import Filter from 'components/Filter';
 
 import { useSelector } from 'react-redux';
 
-import { ThreeDots } from 'react-loader-spinner';
+import { RotatingLines } from 'react-loader-spinner';
 
 import { selectIsLoading } from 'redux/selectors';
 import { selectError } from 'redux/selectors';
@@ -28,15 +28,18 @@ const Contacts = () => {
       <ContactForm />
       <Filter />
       {isLoading && !error && (
-        <div style={{ fontSize: '50px' }}>
-          <ThreeDots
-            height="80"
-            width="80"
-            radius="9"
-            color="inherit"
-            ariaLabel="three-dots-loading"
-            wrapperStyle={{}}
-            wrapperClassName=""
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <RotatingLines
+            strokeColor="#ff7b00"
+            strokeWidth="5"
+            animationDuration="0.75"
+            width="50"
             visible={true}
           />
         </div>

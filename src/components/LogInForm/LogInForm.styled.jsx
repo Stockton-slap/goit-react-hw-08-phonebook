@@ -21,7 +21,6 @@ export const LogInFormTitle = styled.h2`
 export const LogInFormLabel = styled.label`
   margin-bottom: 5px;
   margin-top: 10px;
-  padding-left: 10px;
   font-weight: 700;
 `;
 

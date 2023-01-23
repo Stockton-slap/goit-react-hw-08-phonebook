@@ -1,31 +1,34 @@
 import styled from 'styled-components';
 
 export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+
   width: 500px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   padding: 30px;
 
   margin: 0 auto;
-
-  display: flex;
-  flex-direction: column;
 `;
 
 export const ContactTitle = styled.h2`
   text-align: center;
+  margin: 0;
+  margin-bottom: 20px;
+  padding: 0;
 `;
 
 export const ContactLabel = styled.label`
+  margin-bottom: 5px;
   font-weight: 700;
 
-  &:first-child {
-    margin-bottom: 15px;
+  &:not(:first-child) {
+    margin-top: 10px;
   }
 `;
 
 export const ContactValue = styled.input`
   height: 20px;
-  width: 100%;
   padding-left: 5px;
 
   transition: all 300ms ease-in-out;

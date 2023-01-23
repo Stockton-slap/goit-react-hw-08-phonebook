@@ -9,21 +9,43 @@ import avatar from './avatar.png';
 
 import { logOut } from 'redux/authOperations';
 
+import { RotatingLines } from 'react-loader-spinner';
+
 import { useDispatch, useSelector } from 'react-redux';
 
 import { selectAuthEmail } from 'redux/selectors';
+import { selectIsLoading } from 'redux/selectors';
 
 const UserMenu = () => {
   const dispatch = useDispatch();
 
   const email = useSelector(selectAuthEmail);
+  const isLoading = useSelector(selectIsLoading);
 
   return (
     <UserMenuContainer>
       <Avatar src={avatar} alt="avatar" />
       <UserMenuEmail>Welcome, {email}!</UserMenuEmail>
       <UserMenuBtn type="button" onClick={() => dispatch(logOut())}>
-        Logout
+        {isLoading ? (
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <RotatingLines
+              strokeColor="#fff"
+              strokeWidth="5"
+              animationDuration="0.75"
+              width="20"
+              visible={true}
+            />
+          </div>
+        ) : (
+          'Logout'
+        )}
       </UserMenuBtn>
     </UserMenuContainer>
   );

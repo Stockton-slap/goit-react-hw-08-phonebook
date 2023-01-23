@@ -14,10 +14,14 @@ export const Text = styled.p`
 `;
 
 export const DeleteBtn = styled.button`
-  height: 30px;
   background-color: #ff7b00;
   border-radius: 5px;
   cursor: pointer;
   color: #fff;
   font-weight: 600;
+  position: absolute;
+  right: 0;
+
+  display: flex;
+  align-items: center;
 `;

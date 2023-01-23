@@ -25,11 +25,16 @@ const Filter = () => {
   return (
     <Wrapper>
       <FilterTitle>Contacts</FilterTitle>
-      <FilterLabel>
+      <FilterLabel htmlFor="text">
         Find contacts by name
         <br />
-        <FilterValue type="text" value={filter} onChange={handleChange} />
       </FilterLabel>
+      <FilterValue
+        id="text"
+        type="text"
+        value={filter}
+        onChange={handleChange}
+      />
     </Wrapper>
   );
 };

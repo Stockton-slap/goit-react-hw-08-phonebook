@@ -7,6 +7,8 @@ import {
   LogInFormTitle,
 } from './LogInForm.styled';
 
+import { RotatingLines } from 'react-loader-spinner';
+
 import { logIn } from 'redux/authOperations';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -55,7 +57,7 @@ const LogInForm = () => {
         </LogInFormLabel>
         <LogInFormValue
           id="password"
-          type="text"
+          type="password"
           name="password"
           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
           title="At least one number and one uppercase and lowercase letter, and at least 6 or more characters"
@@ -63,7 +65,25 @@ const LogInForm = () => {
           required
         />
         <LogInFormBtn type="submit">
-          {isLoading ? 'Loading...' : 'Sign in'}
+          {isLoading ? (
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <RotatingLines
+                strokeColor="#fff"
+                strokeWidth="5"
+                animationDuration="0.75"
+                width="20"
+                visible={true}
+              />
+            </div>
+          ) : (
+            'Sign in'
+          )}
         </LogInFormBtn>
       </Form>
     </LogInFormContainer>

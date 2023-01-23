@@ -6,10 +6,13 @@ export const Wrapper = styled.div`
 
 export const FilterTitle = styled.h2`
   text-align: center;
+  margin-top: 60px;
 `;
 
 export const FilterLabel = styled.label`
   font-weight: 700;
+  margin-bottom: 5px;
+  display: block;
 `;
 
 export const FilterValue = styled.input`

@@ -1,16 +1,14 @@
 import styled from 'styled-components';
 
-export const RegFormContainer = styled.div`
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+
   width: 500px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   padding: 30px;
 
   margin: 0 auto;
-`;
-
-export const Form = styled.form`
-  display: flex;
-  flex-direction: column;
 `;
 
 export const RegFormTitle = styled.h2`
@@ -22,7 +20,6 @@ export const RegFormTitle = styled.h2`
 export const RegFormLabel = styled.label`
   margin-bottom: 5px;
   margin-top: 10px;
-  padding-left: 10px;
   font-weight: 700;
 `;
 
