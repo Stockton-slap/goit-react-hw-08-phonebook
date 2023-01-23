@@ -4,7 +4,12 @@ import { useDispatch } from 'react-redux';
 import { selectFilter } from 'redux/selectors';
 import { updateFilter } from 'redux/filterSlice';
 
-import { Wrapper, FilterLabel, FilterValue } from './Filter.styled';
+import {
+  Wrapper,
+  FilterLabel,
+  FilterValue,
+  FilterTitle,
+} from './Filter.styled';
 
 const Filter = () => {
   const filter = useSelector(selectFilter);
@@ -19,7 +24,7 @@ const Filter = () => {
 
   return (
     <Wrapper>
-      <h2>Contacts</h2>
+      <FilterTitle>Contacts</FilterTitle>
       <FilterLabel>
         Find contacts by name
         <br />

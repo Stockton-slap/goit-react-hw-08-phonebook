@@ -14,11 +14,10 @@ export const Text = styled.p`
 `;
 
 export const DeleteBtn = styled.button`
-  border: 0;
-  background-color: inherit;
-  color: red;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: 15px;
+  height: 30px;
+  background-color: #ff7b00;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 600;
 `;

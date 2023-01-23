@@ -1,7 +1,12 @@
 const Home = () => {
   return (
     <div>
-      <h1>Home page</h1>
+      <h1 style={{ textAlign: 'center', fontSize: '50px', lineHeight: '80px' }}>
+        Welcome to the <br />
+        Phonebook Home Page
+        <br />
+        🎉 🎉 🎉
+      </h1>
     </div>
   );
 };
