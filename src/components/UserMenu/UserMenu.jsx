@@ -14,13 +14,13 @@ import { RotatingLines } from 'react-loader-spinner';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { selectAuthEmail } from 'redux/selectors';
-import { selectIsLoading } from 'redux/selectors';
+import { selectIsAuthLoading } from 'redux/selectors';
 
 const UserMenu = () => {
   const dispatch = useDispatch();
 
   const email = useSelector(selectAuthEmail);
-  const isLoading = useSelector(selectIsLoading);
+  const isLoading = useSelector(selectIsAuthLoading);
 
   return (
     <UserMenuContainer>
