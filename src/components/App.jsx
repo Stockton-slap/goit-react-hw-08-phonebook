@@ -50,32 +50,24 @@ export const App = () => {
           }
         >
           <Routes>
-            <Route
-              exact
-              path="/"
-              element={<PublicRoute>{<Home />}</PublicRoute>}
-            />
+            <Route path="/" element={<PublicRoute>{<Home />}</PublicRoute>} />
 
             <Route
-              exact
               path="/contacts"
               element={<PrivateRoute>{<Contacts />}</PrivateRoute>}
             ></Route>
 
             <Route
-              exact
               path="/register"
               element={<PublicRoute restricted>{<Register />}</PublicRoute>}
             />
 
             <Route
-              exact
               path="/login"
               element={<PublicRoute restricted>{<LogIn />}</PublicRoute>}
             />
 
             <Route
-              exact
               path="*"
               element={<PublicRoute>{<NotFound />}</PublicRoute>}
             />
