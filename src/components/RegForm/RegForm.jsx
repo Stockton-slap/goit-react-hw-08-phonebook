@@ -46,7 +46,6 @@ const RegForm = () => {
         id="name"
         type="text"
         name="name"
-        pattern="[A-Za-z]+"
         title="Letters only"
         required
         maxlength="32"
@@ -59,7 +58,6 @@ const RegForm = () => {
         id="email"
         type="text"
         name="email"
-        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"
         title="Email must include '@'"
         required
       />
@@ -71,7 +69,6 @@ const RegForm = () => {
         id="password"
         type="password"
         name="password"
-        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
         title="At least one number and one uppercase and lowercase letter, and at least 6 or more characters"
         placeholder="At least 6 characters"
         required
